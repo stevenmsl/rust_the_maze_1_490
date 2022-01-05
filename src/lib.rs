@@ -22,6 +22,7 @@ impl Solution {
     let rows = maze.len();
     let cols = maze[0].len();
     let mut visited = vec![vec![false; cols]; rows];
+    visited[start.0][start.1] = true;
     Self::bfs(start, dest, maze, &mut visited)
   }
 
@@ -32,7 +33,7 @@ impl Solution {
     visited: &mut Vec<Vec<bool>>,
   ) -> bool {
     /*
-      - right, left, down, up
+      - down, up, right, and left
     */
     let neighbors = vec![(1, 0), (-1, 0), (0, 1), (0, -1)];
     let mut queue = VecDeque::from([*node]);
